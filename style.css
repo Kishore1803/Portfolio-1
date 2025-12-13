@@ -88,8 +88,7 @@ html{
     margin: 10px auto;
   }
   .cert{
-    width: fit-content;
-    height: max-content;
+    height: 250px;
     margin: 20px auto 0;
   }
 }
