@@ -1,15 +1,19 @@
-import express from "express";
-import dotenv from "dotenv";
-import contactRoutes from "./routes/contactRoutes.js";
-import "./db.js";
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-dotenv.config();
+  const data = {
+    name: name.value,
+    email: email.value,
+    subject: subject.value,
+    message: message.value
+  };
 
-const app = express();
-app.use(express.json());
+  const res = await fetch("http://localhost:5000/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
 
-app.use("/api", contactRoutes);
-
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
+  const result = await res.json();
+  alert(result.message);
 });
